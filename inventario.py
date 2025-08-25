@@ -1,8 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk, messagebox
-from data_mogodb import *
-import data_mogodb as dbm
+from ferreteriaTorCuaDB import dbm
 
 class Inventario(tk.Frame):
     def __init__(self, padre):
@@ -138,9 +137,8 @@ class Inventario(tk.Frame):
         
     def get_collection_inventario(self):
         self.tre.delete(*self.tre.get_children())
-        collection = dbm.get_collection("inventario")
-        documents = dbm.get_all_documents(collection)
         
+                
         self.ordenar_treeview(self, "ID", reversed=True)
             
     
@@ -173,7 +171,7 @@ class Inventario(tk.Frame):
 
         # Aquí agregarías la lógica para insertar el producto en la base de datos o lista
         # Por ejemplo:
-        # insertar_producto(producto, proveedor, marca, modelo, codigo, precio, costo, stock)
+        #insertar_producto(producto, proveedor, marca, modelo, codigo, precio, costo, stock)
         #conn = dbm.conectar()
         id_insert = dbm.insert_document("inventario", new_producto)
         if id_insert is None:
